@@ -5,14 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 public class TestLogController {
 
     private final Logger logger = LoggerFactory.getLogger(TestLogController.class.getName());
 
-    @GetMapping("/test")
+    @GetMapping("/api/test/v1")
     public String testLog(){
         logger.debug("This is an DEBUG log");
         logger.info("This is an INFO log");
