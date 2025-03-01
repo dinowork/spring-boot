@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
-			<!--<version>9.2.0</version>-->
+			<version>9.1.0</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -67,6 +67,32 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+		<!-- Esse plugin serve para gerar a criação e insert da tabelas no flyway sem precisa subir o spring (usar comandos no cmd) -->
+		<!-- subir projeto com spring acesso ao pom.xml:   mvn clean package spring-boot:run -DskipTests   -->
+			<!-- subir projeto com spring acesso ao pom.xml:   mvn flyway:migrate   -->
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<configuration>
+					<url>  jdbc:mysql://localhost:3306/spring_boot?useTimezone=true&amp;serverTimezone=UTC</url>
+					<user>root</user>
+					<password>root</password>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.mysql</groupId>
+						<artifactId>mysql-connector-j</artifactId>
+						<version>9.1.0</version>
+						<exclusions>
+							<exclusion>
+								<groupId>org.slf4j</groupId>
+								<artifactId>slf4j-api</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 	</build>
 
