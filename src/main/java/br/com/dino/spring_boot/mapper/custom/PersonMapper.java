@@ -7,15 +7,20 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class PersonMapper {
+public  class PersonMapper {
 
     public PersonDTOv2 converterEntityToDTO(Person person){
         PersonDTOv2 entity = new PersonDTOv2();
+        entity.setId(person.getId());
         entity.setGender(person.getGender());
         entity.setAddress(person.getAddress());
         entity.setFirstName(person.getFirstName());
-        entity.setLastName(person.getLastName());
+       // entity.setLastName(person.getLastName());
+        entity.setLastName(null);
         entity.setBirthDay(new Date());
+        //entity.setPhoneNumber("+55 (11) 969685-8570");
+        entity.setPhoneNumber("");
+        entity.setSensitiveData("For Bar");
         return  entity;
     }
 

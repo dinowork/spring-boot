@@ -33,6 +33,12 @@ public class PersonServices {
         return parseObject(data, PersonDTO.class);
     }
 
+    public PersonDTOv2 findByIdColumnBirthDay(Long id){
+        logger.info("V2 -  Finding one Person !");
+        Person data = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        return converter.converterEntityToDTO(data);
+    }
+
     public List <PersonDTO> findAll(){
         logger.info("Finding all People!");
         return parseListObjects(repository.findAll(),PersonDTO.class) ;
@@ -45,7 +51,7 @@ public class PersonServices {
     }
 
     public PersonDTOv2 create(PersonDTOv2 person){
-        logger.info("Creating one person V2!");
+        logger.info("V2 - Creating one person V2!");
         Person data = converter.converterDTOToEntity(person);
         return converter.converterEntityToDTO(repository.save(data));
     }
