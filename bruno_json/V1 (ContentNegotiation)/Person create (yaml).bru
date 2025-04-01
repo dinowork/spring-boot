@@ -1,0 +1,30 @@
+meta {
+  name: Person create (yaml)
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/person/v1
+  body: text
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/yaml
+  Accept: application/yaml
+}
+
+body:json {
+  address: " São paulo, Brasil" 
+  first_name: "lucas guloso" 
+  last_name: "Kill" 
+  gender: "Male"
+}
+
+body:text {
+  address: " São paulo, Brasil" 
+  first_name: "Adriano " 
+  last_name: "YAML" 
+  gender: "Male"
+}

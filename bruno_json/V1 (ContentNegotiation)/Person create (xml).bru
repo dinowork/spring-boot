@@ -1,0 +1,25 @@
+meta {
+  name: Person create (xml)
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/api/person/v1
+  body: xml
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/xml
+  Accept: application/xml
+}
+
+body:xml {
+  <PersonDTO>
+      <address> Salvador , Bahia, Brasil</address>
+      <first_name>Maria</first_name>
+      <last_name>XML</last_name>
+      <gender>Female</gender>
+  </PersonDTO>
+}
