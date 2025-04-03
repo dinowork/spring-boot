@@ -9,15 +9,6 @@ import java.util.List;
 
 public class MockPerson {
 
-
-    public Person mockEntity() {
-        return mockEntity(0);
-    }
-    
-    public PersonDTO mockDTO() {
-        return mockDTO(0);
-    }
-    
     public List<Person> mockEntityList() {
         List<Person> persons = new ArrayList<Person>();
         for (int i = 0; i < 14; i++) {
@@ -33,7 +24,12 @@ public class MockPerson {
         }
         return persons;
     }
-    
+
+
+    public Person mockEntity() {
+        return mockEntity(0);
+    }
+
     public Person mockEntity(Integer number) {
         Person person = new Person();
         person.setAddress("Address Test" + number);
@@ -42,6 +38,10 @@ public class MockPerson {
         person.setId(number.longValue());
         person.setLastName("Last Name Test" + number);
         return person;
+    }
+
+    public PersonDTO mockDTO() {
+        return mockDTO(0);
     }
 
     public PersonDTO mockDTO(Integer number) {
@@ -53,5 +53,9 @@ public class MockPerson {
         person.setLastName("Last Name Test" + number);
         return person;
     }
+
+
+
+
 
 }

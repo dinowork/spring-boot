@@ -3,6 +3,7 @@ package br.com.dino.spring_boot.service;
 import br.com.dino.spring_boot.controller.PersonController;
 import br.com.dino.spring_boot.dto.v1.PersonDTO;
 import br.com.dino.spring_boot.dto.v2.PersonDTOv2;
+import br.com.dino.spring_boot.exception.RequiredObjectIsNullException;
 import br.com.dino.spring_boot.exception.ResourceNotFoundException;
 import br.com.dino.spring_boot.mapper.custom.PersonMapper;
 import br.com.dino.spring_boot.model.Person;
@@ -34,6 +35,7 @@ public class PersonServices {
 
     public PersonDTO create(PersonDTO person){
         logger.info("Creating one person!");
+        if(person == null) throw new RequiredObjectIsNullException();
         Person data = parseObject(person, Person.class);
         PersonDTO dto = parseObject(repository.save(data), PersonDTO.class);
         addHateoasLinks(dto);
@@ -51,6 +53,7 @@ public class PersonServices {
 
     public PersonDTO update(PersonDTO person){
         logger.info("Updating one person!");
+        if(person == null) throw new RequiredObjectIsNullException();
         Person data = repository.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         data.setGender(person.getGender());
         data.setAddress(person.getAddress());
